@@ -2,10 +2,19 @@
 
 MyUpload Plugin is a CakePHP Plugin use for uploading simple files to webroot folder and managing them after uploaded.
 
+**Screenshots:**
+
+[http://d.pr/i/L7D4](http://d.pr/i/L7D4+)
+
+[http://d.pr/i/BDWH](http://d.pr/i/BDWH+)
+
+[http://d.pr/i/AVfQ](http://d.pr/i/AVfQ+)
+
 ## Author - Contact ##
 
-Author: Truc Thanh (ChickenRainTeam)
-Contact Email: ChickenRainTeam - hi@chickenrain.com
+Author: Truc Thanh ([ChickenRainTeam](http://chickenrain.com))
+
+Contact: ChickenRainTeam - hi@chickenrain.com
 
 ## Requirements ##
 
