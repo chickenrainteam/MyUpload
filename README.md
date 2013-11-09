@@ -50,7 +50,10 @@ Or import file MyUpload/Config/Schema/my_upload_db.sql if you can not use Cake C
 Beside using plugin as a integrated cakephp application, you also use the FileManager Component for configuration and uploading files in a single project.
 
 ### Controller ###
-Load the component to your controller: public $components = array('MyUpload.FileManager');
+Load the component to your controller: 
+
+	public $components = array('MyUpload.FileManager');
+
 If you want more configurations, just add it to an array, eg.
 
 	public $components = array(
@@ -67,9 +70,9 @@ If you want more configurations, just add it to an array, eg.
 ### Uploading and Validating Files ###
 Once you have your upload defined, you will need to add the input field in the form. Both the form and input will need the file type applied.
 
-echo $this->Form->create('Model', array('type' => 'file'));
-echo $this->Form->input('path', array('type' => 'file'));
-echo $this->Form->end('Upload');
+	echo $this->Form->create('Model', array('type' => 'file'));
+	echo $this->Form->input('path', array('type' => 'file'));
+	echo $this->Form->end('Upload');
 
 And finally, just call FileManager::upload() and your file should be uploaded.
 
@@ -102,6 +105,7 @@ Like any upload form, you want to validate the file before it is actually upload
 
 ### Deleting File ###
 You can delete file by calling FileManager::delete() method.
+	
 	if($this->FileManager->delete($fileupload['Model']['path'])){
 		// deleted
 	}else{
@@ -117,18 +121,22 @@ It will return all the files data are existing in your upload folder including d
 There are some useful methods that you can use for improving your project.
 
 * Checking existent file in the upload folder, use FileManager::exists()
+	
 	$status = $this->FileManager->exists($filename);
 
 * Get the absolute path of upload folder, use FileManager::getPath()
+	
 	$absolute_path = $this->FileManager->getPath();
 
 * Rename the file in the upload folder, use FileManager::rename(), it will return an old file name with random number string.
+	
 	$filename = 'old_name.txt';
 	$filename = $this->FileManager->rename($filename);
 	//result: $filename = 'old_name_123456.txt';
 
 * Upload multiple files:
 If you want to upload more files in the same time, you first need to make an upload form like this:
+	
 	echo $this->Form->create('Model', array('type' => 'file'));
 	echo $this->Form->input('Model.0.path', array('type' => 'file'));
 	echo $this->Form->input('Model.1.path', array('type' => 'file'));
@@ -136,6 +144,7 @@ If you want to upload more files in the same time, you first need to make an upl
 	echo $this->Form->end('Upload');
 
 Or using for loop to make inputs:
+	
 	echo $this->Form->create('Model', array('type' => 'file'));
 	for($i = 0; $i<5; $i++){
 		echo $this->Form->input('Model.'.$i.'.path', array('type' => 'file'));
@@ -143,6 +152,7 @@ Or using for loop to make inputs:
 	echo $this->Form->end('Upload');
 
 And then at the controller, just call FileManager::upload method in a foreach loop:
+	
 	foreach ($this->request->data['Model'] as $file) {
 		if(!empty($file['path']['name'])){
 			$result = $this->FileManager->upload($file);
