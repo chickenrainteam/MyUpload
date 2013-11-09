@@ -121,28 +121,28 @@ It will return all the files data are existing in your upload folder including d
 There are some useful methods that you can use for improving your project.
 
 * Checking existent file in the upload folder, use FileManager::exists()
-	
+```php
 	$status = $this->FileManager->exists($filename);
-
+```
 * Get the absolute path of upload folder, use FileManager::getPath()
-	
+```php	
 	$absolute_path = $this->FileManager->getPath();
-
+```
 * Rename the file in the upload folder, use FileManager::rename(), it will return an old file name with random number string.
-	
+```php	
 	$filename = 'old_name.txt';
 	$filename = $this->FileManager->rename($filename);
 	//result: $filename = 'old_name_123456.txt';
-
+```
 * Upload multiple files:
 If you want to upload more files in the same time, you first need to make an upload form like this:
-	
+```php	
 	echo $this->Form->create('Model', array('type' => 'file'));
 	echo $this->Form->input('Model.0.path', array('type' => 'file'));
 	echo $this->Form->input('Model.1.path', array('type' => 'file'));
 	echo $this->Form->input('Model.2.path', array('type' => 'file'));
 	echo $this->Form->end('Upload');
-
+```
 Or using for loop to make inputs:
 	
 	echo $this->Form->create('Model', array('type' => 'file'));
