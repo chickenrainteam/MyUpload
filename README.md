@@ -51,11 +51,11 @@ Beside using plugin as a integrated cakephp application, you also use the FileMa
 
 ### Controller ###
 Load the component to your controller: 
-
+```php
 	public $components = array('MyUpload.FileManager');
-
+```
 If you want more configurations, just add it to an array, eg.
-
+```php
 	public $components = array(
 		'MyUpload.FileManager' => array(
 				'location' => WWW_ROOT, // upload to webroot folder, or use APP if you want to upload files outside webroot
@@ -66,25 +66,25 @@ If you want more configurations, just add it to an array, eg.
 				'overwrite' => true // default is true, if it set to false, the same file will not be uploaded
 			)
 		);
-
+```
 ### Uploading and Validating Files ###
 Once you have your upload defined, you will need to add the input field in the form. Both the form and input will need the file type applied.
-
+```php
 	echo $this->Form->create('Model', array('type' => 'file'));
 	echo $this->Form->input('path', array('type' => 'file'));
 	echo $this->Form->end('Upload');
-
+```
 And finally, just call FileManager::upload() and your file should be uploaded.
-
+```php
 	$result = $this->FileManager->upload($this->request->data['Model']);
 	if ($result['status']) {
 		// Do something
 	}else{
 		// Upload failed
 	}
-
+```
 FileManager::upload() method return an array with some values like this:
-
+```php
 	array(
 		'status' => true,
 		'file_name' => 'the-file-name.ext',
@@ -92,9 +92,9 @@ FileManager::upload() method return an array with some values like this:
 		'file_type' => 'image/jpg',
 		'file_size' => '23849'
 	);
-
+```
 Like any upload form, you want to validate the file before it is actually uploaded. We can do this by using the FileManager::validate(). The FileManager Component use setings include maxSize and mimeTypes to check validation of file before uploading. All we need to do is call validate method, like so.
-
+```php
 	$validation = $this->FileManager->validate($this->request->data['Model']);
 	if($validation['status']){
 		// Do upload
@@ -102,33 +102,38 @@ Like any upload form, you want to validate the file before it is actually upload
 		// Error
 		$this->Session->setFlash($validation['error']);
 	}
-
+```
 ### Deleting File ###
 You can delete file by calling FileManager::delete() method.
-	
+```php	
 	if($this->FileManager->delete($fileupload['Model']['path'])){
 		// deleted
 	}else{
 		// error
 	}
-
+```
 ### Scanning Upload Folder ###
 When you have set up your upload folder, you can scan that folder to update old uploaded files data to your database before starting to upload new files. Just call FileManager::scan(), like so:
-$files = $this->FileManager->scan();
+```php
+	$files = $this->FileManager->scan();
+```
 It will return all the files data are existing in your upload folder including dirname, basename, extension, filename, mime, filesize, and path. And you can use that data for saving or updating to the database.
 
 ### Other ###
 There are some useful methods that you can use for improving your project.
 
 * Checking existent file in the upload folder, use FileManager::exists()
+
 ```php
 	$status = $this->FileManager->exists($filename);
 ```
 * Get the absolute path of upload folder, use FileManager::getPath()
+
 ```php	
 	$absolute_path = $this->FileManager->getPath();
 ```
 * Rename the file in the upload folder, use FileManager::rename(), it will return an old file name with random number string.
+
 ```php	
 	$filename = 'old_name.txt';
 	$filename = $this->FileManager->rename($filename);
@@ -136,6 +141,7 @@ There are some useful methods that you can use for improving your project.
 ```
 * Upload multiple files:
 If you want to upload more files in the same time, you first need to make an upload form like this:
+
 ```php	
 	echo $this->Form->create('Model', array('type' => 'file'));
 	echo $this->Form->input('Model.0.path', array('type' => 'file'));
@@ -144,20 +150,20 @@ If you want to upload more files in the same time, you first need to make an upl
 	echo $this->Form->end('Upload');
 ```
 Or using for loop to make inputs:
-	
+```php	
 	echo $this->Form->create('Model', array('type' => 'file'));
 	for($i = 0; $i<5; $i++){
 		echo $this->Form->input('Model.'.$i.'.path', array('type' => 'file'));
 	}
 	echo $this->Form->end('Upload');
-
+```
 And then at the controller, just call FileManager::upload method in a foreach loop:
-	
+```php	
 	foreach ($this->request->data['Model'] as $file) {
 		if(!empty($file['path']['name'])){
 			$result = $this->FileManager->upload($file);
 		}
 	}
-
+```
 ### Notes ###
 FileManager Component just help you to upload files to a destination folder. If you want to save files data to the database, you will need to use CakePHP default saving method (Model::save(, Model::saveMany() etc..) for saving the data. And you can get all the files data needed to save from the return result of FileManager::upload() method.
