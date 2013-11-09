@@ -39,12 +39,20 @@ Contact: ChickenRainTeam - hi@chickenrain.com
 * Unzip the plugin file and rename unzip folder to MyUpload
 * Copy unzip folder to your project Plugin folder
 * Load your plugin by add this line to Config/bootstrap.php: 
-CakePlugin::load('MyUpload',array('routes'=>true));
-* Open Cake Console, move to your project by using cd command
+
+```php
+	CakePlugin::load('MyUpload',array('routes'=>true));
+```
+* Open Cake Console, go to your project by using cd command
 * Create plugin's database by using this command in Cake Console: 
-cake schema create -p MyUpload 
+
+	cake schema create -p MyUpload 
+
 Or import file MyUpload/Config/Schema/my_upload_db.sql if you can not use Cake Console.
-* Access plugin by using the link: http://localhost/your-project/my_upload
+
+* Access plugin by using the link: 
+ 
+	http://localhost/your-project/my_upload
 
 ## Component Setup ##
 Beside using plugin as a integrated cakephp application, you also use the FileManager Component for configuration and uploading files in a single project.
