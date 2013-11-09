@@ -58,8 +58,8 @@ If you want more configurations, just add it to an array, eg.
 ```php
 	public $components = array(
 		'MyUpload.FileManager' => array(
-				'location' => WWW_ROOT, // upload to webroot folder, or use APP if you want to upload files outside webroot
-				'uploadDir' => 'files', // upload folder name
+				'location' => WWW_ROOT, // default is WWW_ROOT, upload to webroot folder, or use APP if you want to upload files outside webroot
+				'uploadDir' => 'files', // upload folder name, default is files
 				'dbColumn' => 'path', // database field name for storing file path, default is 'path'
 				'mimeTypes' => array('image/png', 'image/jpg', 'image/jpeg', 'image/gif'), //default accepted mime types for uploading
 				'maxSize' => '2MB', // limited file size when uploading file, default is 2MB
@@ -68,13 +68,13 @@ If you want more configurations, just add it to an array, eg.
 		);
 ```
 ### Uploading and Validating Files ###
-Once you have your upload defined, you will need to add the input field in the form. Both the form and input will need the file type applied.
+Once you have done your upload settings, you will need to add the input field in the form. Both the form and input will need the file type applied.
 ```php
 	echo $this->Form->create('Model', array('type' => 'file'));
 	echo $this->Form->input('path', array('type' => 'file'));
 	echo $this->Form->end('Upload');
 ```
-And finally, just call FileManager::upload() and your file should be uploaded.
+And finally, call FileManager::upload() and your file should be uploaded.
 ```php
 	$result = $this->FileManager->upload($this->request->data['Model']);
 	if ($result['status']) {
