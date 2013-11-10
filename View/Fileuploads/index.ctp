@@ -21,7 +21,7 @@
 		<td><?php echo basename($fileupload['Fileupload']['path']); ?>&nbsp;</td>
 		<td><?php echo h($fileupload['Fileupload']['file_type']); ?>&nbsp;</td>
 		<td><?php echo $this->Number->toReadableSize($fileupload['Fileupload']['file_size']); ?>&nbsp;</td>
-		<td><?php echo $this->Time->format('Y/m/d H:i A',$fileupload['Fileupload']['created']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('Y/m/d H:i A',$fileupload['Fileupload']['created']); ?>&nbsp;</td>		
 		<td class="actions">
 			<?php echo $this->Html->link(__('View/Download'), $fileupload['Fileupload']['path']); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $fileupload['Fileupload']['id']), null, __('Are you sure you want to delete this file?')); ?>
@@ -48,6 +48,6 @@
 	<ul>
 		<li><?php echo $this->Html->link(__('Upload New File'), '/my_upload/upload'); ?></li>
 		<li><?php echo $this->Html->link(__('Upload Multiple Files'), '/my_upload/multi_upload'); ?></li>
-		<li><?php echo $this->Form->postLink(__('Scan Upload Folder'), array('action' => 'scanfiles'),null, __('This action will be delete all your existence data. Are you sure you want do that?')); ?></li>
+		<li><?php echo $this->Form->postLink(__('Scan Upload Folder'), array('action' => 'scanfiles'),null, __('This action will be delete all your existent data. Are you sure you want do that?')); ?></li>
 	</ul>
 </div>

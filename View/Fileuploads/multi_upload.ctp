@@ -1,7 +1,7 @@
 <div class="fileuploads form">
 <?php echo $this->Form->create('Fileupload', array('type'=>'file')); ?>
 	<fieldset>
-		<legend><?php echo __('Choose File to upload'); ?></legend>
+		<legend><?php echo __('Choose File to Upload'); ?></legend>
 	<?php
 		for ($i=0; $i < 5; $i++) { 
 			echo $this->Form->input('Fileupload.'.$i.'.path', array('type'=>'file', 'label'=> false));

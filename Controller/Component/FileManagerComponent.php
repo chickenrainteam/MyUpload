@@ -1,5 +1,11 @@
-<?php /**
-* 
+<?php
+/**
+*
+* FileManagerComponent
+* Uploading and managing files after uploaded
+* @author Truc Thanh - ChickenRainTeam <hi@chickenrain.com>
+* @copyright	Copyright 2013, Truc Thanh - ChickenRainTeam - http://chickenrain.com
+* @link		http://github.com/chickenrainteam/MyUpload
 */
 
 App::uses('Folder','Utility');

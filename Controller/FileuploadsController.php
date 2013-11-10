@@ -1,11 +1,14 @@
 <?php
 App::uses('MyUploadAppController', 'MyUpload.Controller');
+
 /**
- * Fileuploads Controller
- *
- * @property Fileupload $Fileupload
- * @property PaginatorComponent $Paginator
- */
+*
+* FileuploadsController
+* 
+* @author Truc Thanh - ChickenRainTeam <hi@chickenrain.com>
+* @copyright	Copyright 2013, Truc Thanh - ChickenRainTeam - http://chickenrain.com
+* @link		http://github.com/chickenrainteam/MyUpload
+*/
 class FileuploadsController extends MyUploadAppController {
 
 /**
@@ -13,13 +16,16 @@ class FileuploadsController extends MyUploadAppController {
  *
  * @var array
  */
-	public $components = array(
-		'Paginator', 
-		'MyUpload.FileManager' => array(
-			'uploadDir' => 'files',
-			'mimeTypes' => array('image/png', 'image/jpg', 'image/jpeg', 'image/gif','text/plain','application/zip')
-			)
-	);
+	public $components = array( 'Paginator', 'MyUpload.FileManager');
+
+/**
+ * Set up beforeFilter()
+ */
+	public function beforeFilter(){
+		$settings = Configure::read('Settings');		
+	    $this->FileManager->settings = array_merge($this->FileManager->settings, $settings);
+	    parent :: beforeFilter();
+	}
 
 /**
  * index method
