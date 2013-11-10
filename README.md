@@ -42,7 +42,11 @@ Contact: ChickenRainTeam - hi@chickenrain.com
 * Load your plugin by add this line to Config/bootstrap.php: 
 
 ```php
+<<<<<<< HEAD
 	CakePlugin::load('MyUpload', array('bootstrap' => true, 'routes' => true));
+=======
+	CakePlugin::load('MyUpload',array('routes'=>true));
+>>>>>>> f3f3e08f7500fc60bf876257527ab5a208a5881b
 ```
 * Open Cake Console, go to your project by using cd command
 * Create plugin's database by using this command in Cake Console: 
@@ -51,6 +55,7 @@ Contact: ChickenRainTeam - hi@chickenrain.com
 	cake schema create -p MyUpload 
 ```
 Or import file MyUpload/Config/Schema/my_upload_db.sql if you can not use Cake Console.
+<<<<<<< HEAD
 
 * Access plugin by using the link: 
 
@@ -82,7 +87,14 @@ to
 ```
 MyUpload plugin will upload files to the destination that you set up above.
 See more settings in MyUpload/Config/bootstrap.php
+=======
+>>>>>>> f3f3e08f7500fc60bf876257527ab5a208a5881b
 
+* Access plugin by using the link: 
+
+```console 
+	http://localhost/your-project/my_upload
+```
 ## Component Setup ##
 Beside using plugin as a integrated cakephp application, you also use the FileManager Component for uploading files in a single project.
 
@@ -91,7 +103,11 @@ Load the component to your controller:
 ```php
 	public $components = array('MyUpload.FileManager');
 ```
+<<<<<<< HEAD
 If you want more settings, just add it to an array, eg.
+=======
+If you want more configurations, just add it to an array, eg.
+>>>>>>> f3f3e08f7500fc60bf876257527ab5a208a5881b
 ```php
 	public $components = array(
 		'MyUpload.FileManager' => array(
