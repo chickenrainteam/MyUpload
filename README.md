@@ -203,4 +203,4 @@ And then at the controller, just call FileManager::upload method in a foreach lo
 	}
 ```
 ### Notes ###
-FileManager Component just help you upload files to the folder destination. If you want to save files data to the database, you will need to use CakePHP default saving methods (Model::save(), Model::saveMany() etc..) for saving the data. And you can get all the files data needed to save from the return result of FileManager::upload() method.
+FileManager Component only helps you upload files to the folder destination. If you want to save files data to the database, you will need to use CakePHP default saving methods (Model::save(), Model::saveMany() etc..) for saving the data. And you can get all the files data needed to save from the return result of FileManager::upload() method.
