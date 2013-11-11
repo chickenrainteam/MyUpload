@@ -86,15 +86,17 @@ class FileManagerComponent extends Component{
 	}
 
 /**
- * Rename file name for when upload file
- * Using overwrite settings
- * @param string $file_name
- * @return $file_name with random number
+ * Rename file to a new name when upload file
+ * if $new_name is null, it will return a new name with random number string
+ * @param string $file_name, $new_name
+ * @return $file_name
  */	
-	public function rename($file_name = null){
+	public function rename($file_name = null, $new_name = null){
 		$file = $this->__fileConstruct($this->getPath(), $file_name);
-		if($this->settings['overwrite']){
+		if(is_null($new_name)){
 			$file_name = $file->name().'_'.rand(0,999999).'.'.$file->ext();
+		}else{
+			$file_name = $new_name.'.'.$file->ext();
 		}
 		return $file_name;
 	}
@@ -121,7 +123,9 @@ class FileManagerComponent extends Component{
 					'file_size' => null
 					);
 			if($this->exists($file_name)){
-				$file_name = $this->rename($file_name);
+				if($this->settings['overwrite']){
+					$file_name = $this->rename($file_name);
+				}
 			}
 			if($file->copy($this->getPath() . '/' .$file_name, false)){
 				$result = array(
