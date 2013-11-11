@@ -169,7 +169,14 @@ There are some useful methods that you can use for improving your project.
 ```php	
 	$absolute_path = $this->FileManager->getPath();
 ```
-* Rename the file in the upload folder, use FileManager::rename(), it will return an old file name with random number string.
+* Rename the file in the upload folder, use FileManager::rename()
+
+```php	
+	$filename = 'old_name.jpg';
+	$filename = $this->FileManager->rename($filename, 'new_name');
+	//result: $filename = 'new_name.jpg';
+```
+If the second variable is null, it will return an old file name with random number string:
 
 ```php	
 	$filename = 'old_name.txt';
