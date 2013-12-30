@@ -94,7 +94,7 @@ class FileManagerComponent extends Component{
 	public function rename($file_name = null, $new_name = null){
 		$file = $this->__fileConstruct($this->getPath(), $file_name);
 		if(is_null($new_name)){
-			$file_name = $file->name().'_'.rand(0,999999).'.'.$file->ext();
+			$file_name = $file->name().'_'.rand(55555,999999).'.'.$file->ext();
 		}else{
 			$file_name = $new_name.'.'.$file->ext();
 		}
@@ -107,7 +107,7 @@ class FileManagerComponent extends Component{
  * @param $data = array()
  * @return $result = array('status','file_name','path','file_type','file_size');
  */	
-	public function upload($data){
+	public function upload($data,$new_name = null){
 		$folder = new Folder();
 		if($folder->create($this->getPath())){
 			$dbColumn = $this->settings['dbColumn'];
@@ -122,6 +122,10 @@ class FileManagerComponent extends Component{
 					'file_type' => null,
 					'file_size' => null
 					);
+			//rename file if the new name was set up
+			if (!empty($new_name)) {
+				$file_name = $this->rename($file_name, $new_name);
+			}
 			if($this->exists($file_name)){
 				if($this->settings['overwrite']){
 					$file_name = $this->rename($file_name);
@@ -181,6 +185,4 @@ class FileManagerComponent extends Component{
 		}
 		return $data;
 	}
-} 
-
-?>
+}
