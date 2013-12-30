@@ -34,6 +34,3 @@ Configure::write('Settings.maxSize', '2MB');
  * Default is true, if it set to false, the same file will not be uploaded
  */
 Configure::write('Settings.overwrite', true);
-
- ?>
- 
