@@ -120,6 +120,10 @@ And finally, call FileManager::upload() and your file should be uploaded.
 		// Upload failed
 	}
 ```
+If your want rename your file before uploading, just add value of the new file name to the second variable, like this:
+```php
+	$result = $this->FileManager->upload($this->request->data['Model'], 'the-new-file-name');
+```
 FileManager::upload() method return an array with some values like this:
 ```php
 	array(
